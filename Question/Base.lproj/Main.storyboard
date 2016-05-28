@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Question" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
@@ -22,7 +21,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="D3o-Ih-VzO">
-                                        <barButtonItem key="rightBarButtonItem" title="Item" id="mek-qN-GL3"/>
+                                        <barButtonItem key="rightBarButtonItem" title="post" id="mek-qN-GL3">
+                                            <connections>
+                                                <segue destination="OxW-dd-rHH" kind="modal" id="AeB-OE-gPL"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -38,8 +41,63 @@
                         <outlet property="table" destination="XDQ-2H-74z" id="wGA-bS-UEd"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="353.5" y="-412.5"/>
+        </scene>
+        <!--Post View Controller-->
+        <scene sceneID="5Di-D9-ep7">
+            <objects>
+                <viewController id="OxW-dd-rHH" customClass="PostViewController" customModule="Question" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Voc-no-FwD"/>
+                        <viewControllerLayoutGuide type="bottom" id="pEm-68-qq8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RFU-l2-EVJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oHh-F7-UtW">
+                                <rect key="frame" x="112" y="44" width="150" height="98"/>
+                            </pickerView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="単元" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C2B-5i-jNn">
+                                <rect key="frame" x="85" y="159" width="204" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="05J-aq-ONU">
+                                <rect key="frame" x="67" y="227" width="240" height="289"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6LF-iA-m0T">
+                                <rect key="frame" x="100" y="558" width="175" height="65"/>
+                                <color key="backgroundColor" red="0.72549019607843135" green="1" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <state key="normal" title="POST">
+                                    <color key="titleColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="post" destination="OxW-dd-rHH" eventType="touchUpInside" id="Lmk-kQ-nEY"/>
+                                    <segue destination="Yun-9s-CcZ" kind="unwind" unwindAction="unwindToTop:" id="R3j-f3-B45"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.98168777559999998" blue="0.81489315709999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="mainTextView" destination="05J-aq-ONU" id="5ja-PR-27U"/>
+                        <outlet property="subjectPickerview" destination="oHh-F7-UtW" id="VLK-Ij-Iwi"/>
+                        <outlet property="titleTextField" destination="C2B-5i-jNn" id="Ggq-HJ-euS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ztB-HV-aAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="p1i-09-GpN"/>
+                <exit id="Yun-9s-CcZ" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="807.5" y="-412.5"/>
         </scene>
     </scenes>
 </document>

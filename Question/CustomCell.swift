@@ -31,7 +31,7 @@ class CustomCell: UITableViewCell {
         titleLabel = UILabel(frame: CGRect(x: 65, y: 10, width: 100, height: 35))
         titleLabel.textColor = UIColor.brownColor()
         titleLabel.textAlignment = NSTextAlignment.Center
-        titleLabel.backgroundColor = UIColor(red: 215/255, green: 255/255, blue: 134/255, alpha: 1)
+        titleLabel.backgroundColor = UIColor(red: 185/255, green: 255/255, blue: 140/255, alpha: 1)
         titleLabel.layer.masksToBounds = true
         titleLabel.layer.cornerRadius = 5
         self.addSubview(titleLabel)

@@ -28,6 +28,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func unwindToTop(segue: UIStoryboardSegue) {
+    }
+    
     //datasourse
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
