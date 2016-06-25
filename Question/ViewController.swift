@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
+    let firebaseRef = Firebase(url:"https://brilliant-fire-2087.firebaseIO.com")
+    
     @IBOutlet var table: UITableView!
+    
+    var question: [Question] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +26,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         table.registerClass(CustomCell.self, forCellReuseIdentifier: "tableCell")
         
         table.rowHeight = 200
+        
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -33,16 +40,16 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     //datasourse
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return question.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: CustomCell = tableView.dequeueReusableCellWithIdentifier("tableCell", forIndexPath: indexPath) as! CustomCell
         
         cell.iconImageView.image = UIImage(named: "icon")
-        cell.titleLabel.text = "test"
-        cell.textbodyLabel.text = "question"
-        cell.subjectLabel.text = "subject"
+        cell.subjectLabel.text = question[indexPath.row].subject
+        cell.titleLabel.text = question[indexPath.row].unit
+        cell.textbodyLabel.text = question[indexPath.row].content
         
         return cell
     }
@@ -50,11 +57,32 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     //delegate
     //cellがタップされたとき呼ばれるメソッド
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(indexPath.row)
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.question = question[indexPath.row]
+        
+        let pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CommentViewController") as! CommentViewController
+        self.navigationController?.pushViewController(pageViewController, animated: true)
     }
     
     @IBAction func post() {
         
+    }
+    
+    @IBAction func refresh() {
+        question.removeAll()
+
+        firebaseRef.queryLimitedToLast(25).observeEventType(.ChildAdded, withBlock: { snapshot in
+            if let subject = snapshot.value.objectForKey("subject") as? String,
+                unit = snapshot.value.objectForKey("unit") as? String, content = snapshot.value.objectForKey("content") as? String {
+                let q = Question(subject: subject, unit: unit, content: content, name: "Shiho")
+                self.question.append(q)
+            }
+            self.table.reloadData()
+        })
+        
+        
+
     }
 
 }

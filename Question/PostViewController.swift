@@ -20,7 +20,7 @@ import Firebase
 class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldDelegate {
     
     @IBOutlet var subjectPickerview: UIPickerView!
-    @IBOutlet var titleTextField: UITextField!
+    @IBOutlet var unitTextField: UITextField!
     @IBOutlet var mainTextView: UITextView!
     
     let firebaseRef = Firebase(url:"https://brilliant-fire-2087.firebaseIO.com")
@@ -34,13 +34,14 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         
         subjectPickerview.delegate = self
         subjectPickerview.dataSource = self
-        titleTextField.delegate = self
+        unitTextField.delegate = self
+        
     }
     
     @IBAction func post() {
         self.dismissViewControllerAnimated(true, completion: nil)
         
-        let messageData = ["name": "Shiho", "subject": subject, "title": titleTextField.text!, "content": mainTextView.text!]
+        let messageData = ["name": "Shiho", "subject": subject, "unit": unitTextField.text!, "content": mainTextView.text!]
         firebaseRef.childByAutoId().setValue(messageData)
         
     }
