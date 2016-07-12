@@ -41,9 +41,13 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     @IBAction func post() {
         self.dismissViewControllerAnimated(true, completion: nil)
         
-        let messageData = ["name": "Shiho", "subject": subject, "unit": unitTextField.text!, "content": mainTextView.text!]
+        let messageData = ["name": "Shiho", "subject": subject, "unit": unitTextField.text!, "content": mainTextView.text!, "comment": ["first": ["aura": "こめんと"]]]
         firebaseRef.childByAutoId().setValue(messageData)
         
+    }
+    
+    @IBAction func back() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     //MARK: picker
