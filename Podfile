@@ -5,6 +5,7 @@ target 'Question' do
 
   use_frameworks!
 
-pod 'Firebase'
+pod 'Firebase’,’>=2.5.1’
+pod 'PullToBounce'
 
 end

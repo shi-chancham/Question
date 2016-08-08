@@ -27,6 +27,8 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     var subjectArray: NSArray = ["英語","国語","数学","社会","理科"]
     
+    let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    
     var subject = ""
     
     override func viewDidLoad() {
@@ -39,10 +41,15 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     }
     
     @IBAction func post() {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
-        let messageData = ["name": "Shiho", "subject": subject, "unit": unitTextField.text!, "content": mainTextView.text!, "comment": ["first": ["aura": "こめんと"]]]
-        firebaseRef.childByAutoId().setValue(messageData)
+        if subjectPickerview == nil || unitTextField == nil || mainTextView == nil {
+            //  alert
+            
+        } else {
+            self.dismissViewControllerAnimated(true, completion: nil)
+            let messageData = ["name": saveData.objectForKey("name") as! String!, "subject": subject, "unit": unitTextField.text!, "content": mainTextView.text!, "comment": ["first": ["aura": "こめんと"]]]
+            firebaseRef.childByAutoId().setValue(messageData)
+            
+        }
         
     }
     

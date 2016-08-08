@@ -69,7 +69,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
     }
     
-    @IBAction func refresh() {
+    func refresh() {
         question.removeAll()
 
         firebaseRef.queryLimitedToLast(25).observeEventType(.ChildAdded, withBlock: { snapshot in
@@ -81,8 +81,22 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 self.question.append(q)
             }
             self.table.reloadData()
+            
+            //refresh
+            // Please wrap your scroll view
+            tableView.frame = table.frame
+            let tableViewWrapper = PullToBounceWrapper(scrollView: table)
+            
+            // Please add wrapper view to your view instead of your scroll view.
+            bodyView.addSubview(tableViewWrapper)
+            
+            tableViewWrapper.didPullToRefresh = {
+                didFinishYourLoading() {
+                    tableViewWrapper.stopLoadingAnimation()
+                }
+            }
+            
         })
-        
         
 
     }
