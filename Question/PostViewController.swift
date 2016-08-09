@@ -23,7 +23,7 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet var unitTextField: UITextField!
     @IBOutlet var mainTextView: UITextView!
     
-    let firebaseRef = Firebase(url:"https://brilliant-fire-2087.firebaseIO.com")
+    var firebaseRef = FIRDatabase.database().reference()
     
     var subjectArray: NSArray = ["英語","国語","数学","社会","理科"]
     

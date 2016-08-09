@@ -19,7 +19,7 @@ class CommentViewController: UIViewController, UITableViewDataSource {
     
     @IBAction func send() {
         if sendTextField.text?.characters.count != 0 {
-            let firebaseRef = Firebase(url:"https://brilliant-fire-2087.firebaseIO.com")
+            let firebaseRef = FIRDatabase.database().reference()
             let uuid = NSUUID().UUIDString
             let comments = [uuid: ["aura": sendTextField.text!]]
             firebaseRef.childByAppendingPath(question!.id).childByAppendingPath("comment").updateChildValues(comments)

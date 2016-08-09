@@ -11,12 +11,13 @@ import Firebase
 
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
-    let firebaseRef = Firebase(url:"https://brilliant-fire-2087.firebaseIO.com")
+//    let firebaseRef = Firebase(url:"https://brilliant-fire-2087.firebaseIO.com")
+    let firebaseRef = FIRDatabase.database().reference()
     
     @IBOutlet var table: UITableView!
     
     var question: [Question] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -28,8 +29,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         table.rowHeight = 200
         
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -42,7 +43,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return question.count
     }
-
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: CustomCell = tableView.dequeueReusableCellWithIdentifier("tableCell", forIndexPath: indexPath) as! CustomCell
         
@@ -69,37 +70,23 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
     }
     
-    func refresh() {
+    @IBAction func refresh() {
         question.removeAll()
-
+        
         firebaseRef.queryLimitedToLast(25).observeEventType(.ChildAdded, withBlock: { snapshot in
             guard let value = snapshot.value else { return }
             if let subject = value.objectForKey("subject") as? String,
-            unit = value.objectForKey("unit") as? String, content = value.objectForKey("content") as? String, id = snapshot.key, comment = value.objectForKey("comment") as? [String: [String: String]] {
+                unit = value.objectForKey("unit") as? String, content = value.objectForKey("content") as? String, id = snapshot.key, comment = value.objectForKey("comment") as? [String: [String: String]] {
                 
                 let q = Question(id: id, subject: subject, unit: unit, content: content, name: "Shiho", comment: comment)
                 self.question.append(q)
             }
             self.table.reloadData()
             
-            //refresh
-            // Please wrap your scroll view
-            tableView.frame = table.frame
-            let tableViewWrapper = PullToBounceWrapper(scrollView: table)
-            
-            // Please add wrapper view to your view instead of your scroll view.
-            bodyView.addSubview(tableViewWrapper)
-            
-            tableViewWrapper.didPullToRefresh = {
-                didFinishYourLoading() {
-                    tableViewWrapper.stopLoadingAnimation()
-                }
-            }
-            
         })
         
-
+        
     }
-
+    
 }
 

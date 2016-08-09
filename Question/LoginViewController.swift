@@ -11,19 +11,22 @@ import Firebase
 
 class LoginViewController: UIViewController {
     
-    let ref = Firebase(url:"https://brilliant-fire-2087.firebaseIO.com")
+    var ref = FIRDatabase.database().reference()
+    //    var ref = FIRDatabase.database().reference()
     
     @IBOutlet var exmailTextField: UITextField!
     @IBOutlet var expasswordTextField: UITextField!
     
     @IBAction func login() {
-        ref.authUser(exmailTextField.text, password: expasswordTextField.text,
-                     withCompletionBlock: { error, authData in
-                        if error != nil {
-                            // There was an error logging in to this account
-                        } else {
-                            // We are now logged in
-                        }
+        FIRAuth.auth()?.signInWithEmail(exmailTextField.text!, password: expasswordTextField.text!, completion: { (user:FIRUser?, error:NSError?) in
+            if let error = error {
+                print("login failed! \(error)")
+                return
+            }
+            
+            if let user = user {
+                print("user : \(user.email) has been signed in successfully.")
+            }
         })
     }
     

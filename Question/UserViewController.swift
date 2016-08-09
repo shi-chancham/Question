@@ -10,8 +10,8 @@ import UIKit
 import Firebase
 
 class UserViewController: UIViewController {
-
-    let ref = Firebase(url:"https://brilliant-fire-2087.firebaseIO.com")
+    
+    var ref = FIRDatabase.database().reference()
     let saveData = NSUserDefaults.standardUserDefaults()
     
     @IBOutlet var usernameTextField: UITextField!
@@ -27,19 +27,30 @@ class UserViewController: UIViewController {
     
     @IBAction func done() {
         
-        ref.createUser(mailTextField.text, password: passwordTextField.text,
-                       withValueCompletionBlock: { error, result in
-                        if error != nil {
-                            // There was an error creating the account
-                        } else {
-                            let uid = result["uid"] as? String
-                            print("Successfully created user account with uid: \(uid)")
-                            
-                            self.saveData.setObject(self.usernameTextField.text, forKey: "name")
-                            self.saveData.setObject(self.mailTextField.text, forKey: "mail")
-                            self.saveData.setObject(self.passwordTextField.text, forKey: "password")
-                            self.saveData.synchronize()
-                        }
+        //        ref.createUser(mailTextField.text, password: passwordTextField.text,
+        //                       withValueCompletionBlock: { error, result in
+        //                        if error != nil {
+        //                            // There was an error creating the account
+        //                        } else {
+        //                            let uid = result["uid"] as? String
+        //                            print("Successfully created user account with uid: \(uid)")
+        //
+        //                            self.saveData.setObject(self.usernameTextField.text, forKey: "name")
+        //                            self.saveData.setObject(self.mailTextField.text, forKey: "mail")
+        //                            self.saveData.setObject(self.passwordTextField.text, forKey: "password")
+        //                            self.saveData.synchronize()
+        //                        }
+        //        })
+        
+        FIRAuth.auth()?.createUserWithEmail(mailTextField.text!, password: passwordTextField.text!, completion: { (user:FIRUser?, error:NSError?) in
+            if let error = error {
+                print("Creating the user failed! \(error)")
+                return
+            }
+            
+            if let user = user {
+                print("user : \(user.email) has been created successfully.")
+            }
         })
         
     }
