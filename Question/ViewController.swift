@@ -74,9 +74,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         question.removeAll()
         
         firebaseRef.queryLimitedToLast(25).observeEventType(.ChildAdded, withBlock: { snapshot in
-            guard let value = snapshot.value else { return }
-            if let subject = value.objectForKey("subject") as? String,
-                unit = value.objectForKey("unit") as? String, content = value.objectForKey("content") as? String, id = snapshot.key, comment = value.objectForKey("comment") as? [String: [String: String]] {
+            let value = snapshot.value
+            if let subject = value!.objectForKey("subject") as? String,
+                unit = value!.objectForKey("unit") as? String, content = value!.objectForKey("content") as? String, id = snapshot.key, comment = value!.objectForKey("comment") as? [String: [String: String]] {
                 
                 let q = Question(id: id, subject: subject, unit: unit, content: content, name: "Shiho", comment: comment)
                 self.question.append(q)
