@@ -10,13 +10,13 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController {
-    
-    var ref = FIRDatabase.database().reference()
-    
+        
     @IBOutlet var exmailTextField: UITextField!
     @IBOutlet var expasswordTextField: UITextField!
     
     @IBAction func login() {
+        _ = FIRDatabase.database().reference()
+        
         FIRAuth.auth()?.signInWithEmail(exmailTextField.text!, password: expasswordTextField.text!, completion: { (user:FIRUser?, error:NSError?) in
             if let error = error {
                 print("login failed! \(error)")

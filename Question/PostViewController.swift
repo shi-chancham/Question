@@ -22,9 +22,7 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet var subjectPickerview: UIPickerView!
     @IBOutlet var unitTextField: UITextField!
     @IBOutlet var mainTextView: UITextView!
-    
-    var firebaseRef = FIRDatabase.database().reference()
-    
+
     var subjectArray: NSArray = ["英語","国語","数学","社会","理科"]
     
     let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -41,6 +39,9 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     }
     
     @IBAction func post() {
+        
+        let firebaseRef = FIRDatabase.database().reference()
+        
         if subjectPickerview == nil || unitTextField == nil || mainTextView == nil {
             //  alert
             let alert = UIAlertController(title: "error",

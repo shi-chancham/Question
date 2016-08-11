@@ -11,6 +11,7 @@
 		B10E84361D1E70E20047AA53 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E84351D1E70E20047AA53 /* CommentCell.swift */; };
 		B142BCF11D55868C009E1E91 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B142BCF01D55868C009E1E91 /* UserViewController.swift */; };
 		B142BCF31D56B4CD009E1E91 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B142BCF21D56B4CD009E1E91 /* LoginViewController.swift */; };
+		B144CE081D5C6F63000291C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B144CE071D5C6F63000291C9 /* GoogleService-Info.plist */; };
 		B1768F281C8AFB48004DC36B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1768F271C8AFB48004DC36B /* AppDelegate.swift */; };
 		B1768F2A1C8AFB48004DC36B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1768F291C8AFB48004DC36B /* ViewController.swift */; };
 		B1768F2D1C8AFB48004DC36B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1768F2B1C8AFB48004DC36B /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		B10E84351D1E70E20047AA53 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		B142BCF01D55868C009E1E91 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		B142BCF21D56B4CD009E1E91 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B144CE071D5C6F63000291C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B1768F241C8AFB48004DC36B /* Question.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Question.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1768F271C8AFB48004DC36B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1768F291C8AFB48004DC36B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				B1768F2E1C8AFB48004DC36B /* Assets.xcassets */,
 				B1768F301C8AFB48004DC36B /* LaunchScreen.storyboard */,
 				B1768F331C8AFB48004DC36B /* Info.plist */,
+				B144CE071D5C6F63000291C9 /* GoogleService-Info.plist */,
 			);
 			path = Question;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1768F321C8AFB48004DC36B /* LaunchScreen.storyboard in Resources */,
+				B144CE081D5C6F63000291C9 /* GoogleService-Info.plist in Resources */,
 				B1768F2F1C8AFB48004DC36B /* Assets.xcassets in Resources */,
 				B1768F2D1C8AFB48004DC36B /* Main.storyboard in Resources */,
 			);
