@@ -22,7 +22,7 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet var subjectPickerview: UIPickerView!
     @IBOutlet var unitTextField: UITextField!
     @IBOutlet var mainTextView: UITextView!
-
+    
     var subjectArray: NSArray = ["英語","国語","数学","社会","理科"]
     
     let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -59,7 +59,8 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             )
         } else {
             self.dismissViewControllerAnimated(true, completion: nil)
-            let messageData = ["name": saveData.objectForKey("name") as! String!, "subject": subject, "unit": unitTextField.text!, "content": mainTextView.text!, "comment": ["first": ["aura": "こめんと"]]]
+            let messageData = ["name": "shiho", "subject": subject, "unit": unitTextField.text!, "content": mainTextView.text!, "comment": ["first": ["aura": "こめんと"]]]
+            //saveData.objectForKey("name") as! String!
             firebaseRef.childByAutoId().setValue(messageData)
         }
     }
