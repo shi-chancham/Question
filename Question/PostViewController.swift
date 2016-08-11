@@ -43,14 +43,24 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     @IBAction func post() {
         if subjectPickerview == nil || unitTextField == nil || mainTextView == nil {
             //  alert
+            let alert = UIAlertController(title: "error",
+                                          message: "全ての項目を埋めてください",
+                                          preferredStyle: UIAlertControllerStyle.Alert)
             
+            alert.addAction(
+                UIAlertAction(
+                    title: "OK",
+                    style: UIAlertActionStyle.Default,
+                    handler: {action in
+                        self.navigationController?.popViewControllerAnimated(true)
+                    }
+                )
+            )
         } else {
             self.dismissViewControllerAnimated(true, completion: nil)
             let messageData = ["name": saveData.objectForKey("name") as! String!, "subject": subject, "unit": unitTextField.text!, "content": mainTextView.text!, "comment": ["first": ["aura": "こめんと"]]]
             firebaseRef.childByAutoId().setValue(messageData)
-            
         }
-        
     }
     
     @IBAction func back() {
@@ -95,5 +105,3 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         // Dispose of any resources that can be recreated.
     }
 }
-
-

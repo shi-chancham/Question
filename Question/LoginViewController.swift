@@ -12,7 +12,6 @@ import Firebase
 class LoginViewController: UIViewController {
     
     var ref = FIRDatabase.database().reference()
-    //    var ref = FIRDatabase.database().reference()
     
     @IBOutlet var exmailTextField: UITextField!
     @IBOutlet var expasswordTextField: UITextField!

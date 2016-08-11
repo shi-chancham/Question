@@ -11,7 +11,6 @@ import Firebase
 
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
-//    let firebaseRef = Firebase(url:"https://brilliant-fire-2087.firebaseIO.com")
     let firebaseRef = FIRDatabase.database().reference()
     
     @IBOutlet var table: UITableView!
@@ -89,4 +88,3 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
 }
-
