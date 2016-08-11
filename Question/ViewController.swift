@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import PullToBounce
 
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
@@ -81,6 +82,13 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 self.question.append(q)
             }
             self.table.reloadData()
+            
+            // Please wrap your scroll view
+            tableView.frame = table.frame
+            let tableViewWrapper = PullToBounceWrapper(scrollView: tableView)
+            
+            // Please add wrapper view to your view instead of your scroll view.
+            tableView.addSubview(tableViewWrapper)
             
         })
         
