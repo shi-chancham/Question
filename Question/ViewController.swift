@@ -8,11 +8,13 @@
 
 import UIKit
 import Firebase
-import PullToBounce
+//import PullToBounce
 
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     @IBOutlet var table: UITableView!
+    
+    var refreshControl:UIRefreshControl!
     
     var question: [Question] = []
     
@@ -26,6 +28,10 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         table.rowHeight = 200
         
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "loading…")
+        self.refreshControl.addTarget(self, action: #selector(ViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
+        self.table.addSubview(refreshControl)
     }
     
     
@@ -67,7 +73,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBAction func post() {
         
     }
-        
+    
     func refresh() {
         question.removeAll()
         let firebaseRef = FIRDatabase.database().reference()
@@ -81,19 +87,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 self.question.append(q)
             }
             self.table.reloadData()
-            
-            // Please wrap your scroll view
-            self.table.frame = self.view.frame
-            let tableViewWrapper = PullToBounceWrapper(scrollView: self.table)
-            
-            // Please add wrapper view to your view instead of your scroll view.
-            self.view.addSubview(tableViewWrapper)
-            
-            tableViewWrapper.didPullToRefresh = {
-                refresh() {
-                    tableViewWrapper.stopLoadingAnimation()
-                }
-            }
+            self.refreshControl.endRefreshing()
         })
     }
     
