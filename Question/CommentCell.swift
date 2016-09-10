@@ -19,16 +19,16 @@ class CommentCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.backgroundColor = UIColor(red: 185/255, green: 255/255, blue: 140/255, alpha: 1)
+        self.backgroundColor = UIColor(red: 255/255, green: 249/255, blue: 205/255, alpha: 1)
         
         //icon
-        iconImageView = UIImageView(frame: CGRect(x: 3, y: 3, width: 30, height: 30))
+        iconImageView = UIImageView(frame: CGRect(x: 12, y: 7, width: 40, height: 40))
         self.addSubview(iconImageView)
         
         //name
         nameLabel = UILabel(frame: CGRect(x: 65, y: 10, width: 100, height: 35))
         nameLabel.textColor = UIColor.brownColor()
-        nameLabel.backgroundColor = UIColor(red: 255/255, green: 249/255, blue: 205/255, alpha: 1)
+        nameLabel.backgroundColor = UIColor(red: 185/255, green: 255/255, blue: 140/255, alpha: 1)
         nameLabel.textAlignment = NSTextAlignment.Center
         nameLabel.layer.masksToBounds = true
         nameLabel.layer.cornerRadius = 5

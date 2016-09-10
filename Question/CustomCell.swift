@@ -28,6 +28,7 @@ class CustomCell: UITableViewCell {
         //icon
         iconImageView = UIImageView(frame: CGRect(x: 3, y: 3, width: 50, height: 50))
         self.addSubview(iconImageView)
+        iconImageView.contentMode = UIViewContentMode.ScaleAspectFit
         
         //name
         nameLabel = UILabel(frame: CGRect(x: 65, y: 10, width: 100, height: 35))

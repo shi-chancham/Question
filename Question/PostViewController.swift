@@ -36,18 +36,23 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         subjectPickerview.dataSource = self
         unitTextField.delegate = self
         
+        self.setNeedsStatusBarAppearanceUpdate();
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        // trueの場合はステータスバー非表示
+        return true;
     }
     
     @IBAction func post() {
         
         let firebaseRef = FIRDatabase.database().reference()
         
-        if subjectPickerview == nil || unitTextField == nil || mainTextView == nil {
+        if unitTextField.text == "" || mainTextView.text == "" {
             //  alert
-            let alert = UIAlertController(title: "error",
+            let alert = UIAlertController(title: "error!",
                                           message: "全ての項目を埋めてください",
                                           preferredStyle: UIAlertControllerStyle.Alert)
-            
             alert.addAction(
                 UIAlertAction(
                     title: "OK",
@@ -57,6 +62,8 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
                     }
                 )
             )
+            self.presentViewController(alert, animated: true, completion: nil)
+            
         } else {
             self.dismissViewControllerAnimated(true, completion: nil)
             let messageData = ["name": "shiho", "subject": subject, "unit": unitTextField.text!, "content": mainTextView.text!, "comment": ["first": ["aura": "こめんと"]]]

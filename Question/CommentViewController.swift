@@ -43,6 +43,13 @@ class CommentViewController: UIViewController, UITableViewDataSource {
         table.dataSource = self
         table.registerClass(CustomCell.self, forCellReuseIdentifier: "CustomCell")
         table.registerClass(CommentCell.self, forCellReuseIdentifier: "CommentCell")
+        
+        self.setNeedsStatusBarAppearanceUpdate();
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        // trueの場合はステータスバー非表示
+        return true;
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,7 +65,7 @@ class CommentViewController: UIViewController, UITableViewDataSource {
         if indexPath.row == 0 {
             let cell: CustomCell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath) as! CustomCell
             
-            cell.iconImageView.image = UIImage(named: "icon")
+            cell.iconImageView.image = UIImage(named: "iconきりん-1")
             cell.subjectLabel.text = question!.subject
             cell.titleLabel.text = question!.unit
             cell.textbodyLabel.text = question!.content
@@ -67,9 +74,14 @@ class CommentViewController: UIViewController, UITableViewDataSource {
         } else {
             tableView.rowHeight = 135
             let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath) as! CommentCell
+            cell.iconImageView.image = UIImage(named: "iconきりん-1")
             cell.nameLabel.text = names[indexPath.row]
             cell.replyLabel.text = comments[indexPath.row]
             return cell
         }
+    }
+    
+    @IBAction func back() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

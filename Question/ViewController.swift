@@ -18,9 +18,13 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     var question: [Question] = []
     
+    var snap: FIRDataSnapshot!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.setNeedsStatusBarAppearanceUpdate();
+        
         table.dataSource = self
         table.delegate = self
         
@@ -40,6 +44,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         // Dispose of any resources that can be recreated.
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        // trueの場合はステータスバー非表示
+        return true;
+    }
+    
     @IBAction func unwindToTop(segue: UIStoryboardSegue) {
     }
     
@@ -51,10 +60,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: CustomCell = tableView.dequeueReusableCellWithIdentifier("tableCell", forIndexPath: indexPath) as! CustomCell
         
-        cell.iconImageView.image = UIImage(named: "icon")
+        cell.iconImageView.image = UIImage(named: "iconきりん-1")
         cell.subjectLabel.text = question[indexPath.row].subject
         cell.titleLabel.text = question[indexPath.row].unit
         cell.textbodyLabel.text = question[indexPath.row].content
+        cell.selectionStyle = .None
         
         return cell
     }
@@ -62,12 +72,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     //delegate
     //cellがタップされたとき呼ばれるメソッド
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.question = question[indexPath.row]
         
         let pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CommentViewController") as! CommentViewController
-        self.navigationController?.pushViewController(pageViewController, animated: true)
+        self.presentViewController(pageViewController, animated: true, completion: nil)
     }
     
     @IBAction func post() {
@@ -89,6 +98,20 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             self.table.reloadData()
             self.refreshControl.endRefreshing()
         })
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            
+            self.delete(deleteIndexPath: indexPath)
+            question.removeAtIndex(indexPath.row)
+            table.reloadData()
+        }
+    }
+    
+    func delete(deleteIndexPath indexPath: NSIndexPath) {
+        let ref = FIRDatabase.database().reference()
+        ref.child(question[indexPath.row].id).removeValue()
     }
     
 }
