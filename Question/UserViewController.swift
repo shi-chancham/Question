@@ -37,6 +37,10 @@ class UserViewController: UIViewController {
             if let user = user {
                 print("user : \(user.email) has been created successfully.")
             }
+            
+            let secondViewController: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("mainVC") as! UINavigationController
+            self.presentViewController(secondViewController, animated: true, completion: nil)
+            print("ここまでok")
         })
         
     }

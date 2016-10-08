@@ -9,20 +9,10 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>PullToBounce.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>00F8F770DAB7353CB9474030268819C4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0238CECC8199553FCCFC33015F1FCD77</key>
+		<key>23CBCAF4FD6A9F9EDCDCAB22E9C6DD71</key>
 		<dict>
 			<key>primary</key>
 			<true/>

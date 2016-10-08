@@ -50,7 +50,7 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         
         if unitTextField.text == "" || mainTextView.text == "" {
             //  alert
-            let alert = UIAlertController(title: "error!",
+            let alert = UIAlertController(title: "ERROR!",
                                           message: "全ての項目を埋めてください",
                                           preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(

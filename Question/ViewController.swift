@@ -114,4 +114,16 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         ref.child(question[indexPath.row].id).removeValue()
     }
     
+    @IBAction func logout() {
+        do {
+            //do-try-catchの中で、FIRAuth.auth()?.signOut()を呼ぶだけで、ログアウトが完了
+            try FIRAuth.auth()?.signOut()
+            //先頭のNavigationControllerに遷移
+            let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Nav")
+            self.presentViewController(storyboard, animated: true, completion: nil)
+        }catch let error as NSError {
+            print("\(error.localizedDescription)")
+        }
+    }
+    
 }
