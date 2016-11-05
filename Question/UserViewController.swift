@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class UserViewController: UIViewController {
+class UserViewController: UIViewController, UITextFieldDelegate {
     
     let saveData = NSUserDefaults.standardUserDefaults()
     
@@ -17,12 +17,52 @@ class UserViewController: UIViewController {
     @IBOutlet var mailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     
-    
     override func viewDidLoad() {
         if saveData.objectForKey("name") as! String! != nil {
             
         }
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+        mailTextField.delegate = self
+        
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UserViewController.keyboardWillBeShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UserViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func keyboardWillBeShown(notification: NSNotification) {
+        print("aaa")
+//        passwordTextField = UITextField(frame: CGRect(x: 50, y: 100, width: 300, height: 35))
+        let rect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let duration:NSTimeInterval = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! Double
+        UIView.animateWithDuration(duration, animations: {
+            let transform = CGAffineTransformMakeTranslation(0, -rect.size.height)
+            self.view.transform = transform
+            },completion:nil)
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification) {
+//        passwordTextField = UITextField(frame: CGRect(x: 50, y: 54, width: 300, height: 35))
+        let duration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! Double)
+        UIView.animateWithDuration(duration, animations:{
+            self.view.transform = CGAffineTransformIdentity
+            },
+                                   completion:nil)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        
+        usernameTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        mailTextField.resignFirstResponder()
+        
+        return true
+    }
+    
+    
     
     @IBAction func done() {
         

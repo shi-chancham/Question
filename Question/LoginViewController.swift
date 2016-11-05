@@ -9,10 +9,25 @@
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
         
     @IBOutlet var exmailTextField: UITextField!
     @IBOutlet var expasswordTextField: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        exmailTextField.delegate = self
+        expasswordTextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        
+        exmailTextField.resignFirstResponder()
+        expasswordTextField.resignFirstResponder()
+        
+        return true
+    }
     
     @IBAction func login() {
         _ = FIRDatabase.database().reference()
