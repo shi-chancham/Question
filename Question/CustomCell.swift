@@ -25,6 +25,8 @@ class CustomCell: UITableViewCell {
         
         self.backgroundColor = UIColor(red: 255/255, green: 249/255, blue: 205/255, alpha: 1)
         
+        self.selectionStyle = .None
+        
         //icon
         iconImageView = UIImageView(frame: CGRect(x: 3, y: 3, width: 50, height: 50))
         self.addSubview(iconImageView)

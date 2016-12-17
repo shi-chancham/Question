@@ -93,7 +93,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 comment = snapshot.value!.objectForKey("comment") as? [String: [String: String]] {
                 
                 let q = Question(id: snapshot.key, subject: subject, unit: unit, content: content, name: "Shiho", comment: comment)
-                self.question.append(q)
+                self.question.insert(q, atIndex: 0)
             }
             self.table.reloadData()
             self.refreshControl.endRefreshing()

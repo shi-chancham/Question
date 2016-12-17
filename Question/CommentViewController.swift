@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class CommentViewController: UIViewController, UITableViewDataSource {
+class CommentViewController: UIViewController, UITableViewDataSource, UITextFieldDelegate {
     
     @IBOutlet var table: UITableView!
     @IBOutlet var sendTextField: UITextField!
@@ -45,6 +45,40 @@ class CommentViewController: UIViewController, UITableViewDataSource {
         table.registerClass(CommentCell.self, forCellReuseIdentifier: "CommentCell")
         
         self.setNeedsStatusBarAppearanceUpdate();
+        
+        sendTextField.delegate = self
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UserViewController.keyboardWillBeShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UserViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func keyboardWillBeShown(notification: NSNotification) {
+        //        passwordTextField = UITextField(frame: CGRect(x: 50, y: 100, width: 300, height: 35))
+        let rect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let duration:NSTimeInterval = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! Double
+        UIView.animateWithDuration(duration, animations: {
+            let transform = CGAffineTransformMakeTranslation(0, -rect.size.height)
+            self.view.transform = transform
+            },completion:nil)
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification) {
+        //        passwordTextField = UITextField(frame: CGRect(x: 50, y: 54, width: 300, height: 35))
+        let duration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! Double)
+        UIView.animateWithDuration(duration, animations:{
+            self.view.transform = CGAffineTransformIdentity
+            },completion:nil)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        
+        sendTextField.resignFirstResponder()
+        
+        return true
     }
     
     override func prefersStatusBarHidden() -> Bool {

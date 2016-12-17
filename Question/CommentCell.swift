@@ -21,6 +21,8 @@ class CommentCell: UITableViewCell {
         
         self.backgroundColor = UIColor(red: 255/255, green: 249/255, blue: 205/255, alpha: 1)
         
+        self.selectionStyle = .None
+        
         //icon
         iconImageView = UIImageView(frame: CGRect(x: 12, y: 7, width: 40, height: 40))
         self.addSubview(iconImageView)
