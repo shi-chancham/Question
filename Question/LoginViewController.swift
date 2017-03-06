@@ -21,6 +21,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         expasswordTextField.delegate = self
     }
     
+    override func viewDidAppear(animated: Bool) {
+        //すでにログインされてたら
+//        if FIRAuth.auth()?.currentUser != nil {
+//            let secondViewController: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("mainVC") as! UINavigationController
+//            self.presentViewController(secondViewController, animated: false, completion: nil)
+//        }
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        // trueの場合はステータスバー非表示
+        return true;
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool{
         
         exmailTextField.resignFirstResponder()

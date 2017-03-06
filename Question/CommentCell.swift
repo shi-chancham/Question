@@ -23,6 +23,8 @@ class CommentCell: UITableViewCell {
         
         self.selectionStyle = .None
         
+        let cellWidth = UIScreen.mainScreen().bounds.size.width
+        
         //icon
         iconImageView = UIImageView(frame: CGRect(x: 12, y: 7, width: 40, height: 40))
         self.addSubview(iconImageView)
@@ -37,11 +39,13 @@ class CommentCell: UITableViewCell {
         self.addSubview(nameLabel)
 
         //reply
-        replyLabel = UILabel(frame: CGRect(x: 35, y: 55, width: 300, height: 70))
+        replyLabel = UILabel(frame: CGRect(x: 35, y: 55, width: cellWidth*0.85, height: 70))
         replyLabel.textColor = UIColor.blackColor()
         replyLabel.backgroundColor = UIColor(red: 249/249, green: 192/249, blue: 79/249, alpha: 1)
         replyLabel.layer.masksToBounds = true
         replyLabel.layer.cornerRadius = 5
+        replyLabel.font = UIFont.systemFontOfSize(13);
+        replyLabel.numberOfLines = 3
         self.addSubview(replyLabel)
         
     }

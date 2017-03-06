@@ -12,6 +12,10 @@
 		B142BCF11D55868C009E1E91 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B142BCF01D55868C009E1E91 /* UserViewController.swift */; };
 		B142BCF31D56B4CD009E1E91 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B142BCF21D56B4CD009E1E91 /* LoginViewController.swift */; };
 		B144CE081D5C6F63000291C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B144CE071D5C6F63000291C9 /* GoogleService-Info.plist */; };
+		B16CFBCF1E61622F00E9097B /* RuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16CFBCE1E61622F00E9097B /* RuleViewController.swift */; };
+		B16CFBD11E61625000E9097B /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16CFBD01E61625000E9097B /* PrivacyViewController.swift */; };
+		B16CFBD41E6164B600E9097B /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = B16CFBD21E6164B600E9097B /* privacy.html */; };
+		B16CFBD51E6164B600E9097B /* rule.html in Resources */ = {isa = PBXBuildFile; fileRef = B16CFBD31E6164B600E9097B /* rule.html */; };
 		B1768F281C8AFB48004DC36B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1768F271C8AFB48004DC36B /* AppDelegate.swift */; };
 		B1768F2A1C8AFB48004DC36B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1768F291C8AFB48004DC36B /* ViewController.swift */; };
 		B1768F2F1C8AFB48004DC36B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1768F2E1C8AFB48004DC36B /* Assets.xcassets */; };
@@ -99,6 +103,10 @@
 		B142BCF01D55868C009E1E91 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		B142BCF21D56B4CD009E1E91 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B144CE071D5C6F63000291C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B16CFBCE1E61622F00E9097B /* RuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleViewController.swift; sourceTree = "<group>"; };
+		B16CFBD01E61625000E9097B /* PrivacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
+		B16CFBD21E6164B600E9097B /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
+		B16CFBD31E6164B600E9097B /* rule.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = rule.html; sourceTree = "<group>"; };
 		B1768F241C8AFB48004DC36B /* Question.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Question.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1768F271C8AFB48004DC36B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1768F291C8AFB48004DC36B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +238,8 @@
 		B1768F261C8AFB48004DC36B /* Question */ = {
 			isa = PBXGroup;
 			children = (
+				B16CFBD21E6164B600E9097B /* privacy.html */,
+				B16CFBD31E6164B600E9097B /* rule.html */,
 				B1F87C791DCDC28800546179 /* question icon */,
 				B186346C1DA9021900B2179F /* Question.entitlements */,
 				B1768F271C8AFB48004DC36B /* AppDelegate.swift */,
@@ -241,6 +251,8 @@
 				B1864F531C9D487A004E8BA5 /* PostViewController.swift */,
 				B1EF02CB1D0C261D00135AAD /* CommentViewController.swift */,
 				B10E84351D1E70E20047AA53 /* CommentCell.swift */,
+				B16CFBCE1E61622F00E9097B /* RuleViewController.swift */,
+				B16CFBD01E61625000E9097B /* PrivacyViewController.swift */,
 				B1768F2E1C8AFB48004DC36B /* Assets.xcassets */,
 				B18634691DA8D4B000B2179F /* Main.storyboard */,
 				B1768F301C8AFB48004DC36B /* LaunchScreen.storyboard */,
@@ -582,9 +594,11 @@
 				B1F87CD71DCDC28800546179 /* Icon-App-60x60@2x.png in Resources */,
 				B1F87CC91DCDC28800546179 /* icon-messages-transcript-32x24@2x.png in Resources */,
 				B1F87CC21DCDC28800546179 /* icon-messages-app-iPadAir-67x50@2x.png in Resources */,
+				B16CFBD51E6164B600E9097B /* rule.html in Resources */,
 				B186346B1DA8D4B000B2179F /* Main.storyboard in Resources */,
 				B1F87CBA1DCDC28800546179 /* ic_launcher.png in Resources */,
 				B1F87CE71DCDC28800546179 /* Icon-44@2x.png in Resources */,
+				B16CFBD41E6164B600E9097B /* privacy.html in Resources */,
 				B1F87CD01DCDC28800546179 /* Icon-App-29x29@2x.png in Resources */,
 				B1F87CC11DCDC28800546179 /* icon-messages-app-27x20@3x.png in Resources */,
 				B1F87CD31DCDC28800546179 /* Icon-App-40x40@2x.png in Resources */,
@@ -676,6 +690,7 @@
 				B142BCF31D56B4CD009E1E91 /* LoginViewController.swift in Sources */,
 				B1EF02C81D0BFF7E00135AAD /* Question.swift in Sources */,
 				B1F87CE01DCDC28800546179 /* README.md in Sources */,
+				B16CFBCF1E61622F00E9097B /* RuleViewController.swift in Sources */,
 				B1EF02CC1D0C261D00135AAD /* CommentViewController.swift in Sources */,
 				B1864F541C9D487A004E8BA5 /* PostViewController.swift in Sources */,
 				B1864F521C9D3002004E8BA5 /* CustomCell.swift in Sources */,
@@ -683,6 +698,7 @@
 				B1768F2A1C8AFB48004DC36B /* ViewController.swift in Sources */,
 				B1768F281C8AFB48004DC36B /* AppDelegate.swift in Sources */,
 				B10E84361D1E70E20047AA53 /* CommentCell.swift in Sources */,
+				B16CFBD11E61625000E9097B /* PrivacyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

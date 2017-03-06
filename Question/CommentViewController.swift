@@ -17,12 +17,24 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITextFiel
     var names = [""]
     var comments = [""]
     
+    let saveData = NSUserDefaults.standardUserDefaults()
+    
+    
     @IBAction func send() {
         if sendTextField.text?.characters.count != 0 {
             let firebaseRef = FIRDatabase.database().reference()
             let uuid = NSUUID().UUIDString
-            let comments = [uuid: ["aura": sendTextField.text!]]
-            firebaseRef.childByAppendingPath(question!.id).childByAppendingPath("comment").updateChildValues(comments)
+            let name = saveData.objectForKey("name") as! String
+            let comments = [uuid: [name: sendTextField.text!]]
+            firebaseRef.child(question!.id).child("comment").updateChildValues(comments)
+            
+            let alert: UIAlertController = UIAlertController(title: "コメント", message: "送信が完了しました", preferredStyle:  UIAlertControllerStyle.Alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+                (action: UIAlertAction!) -> Void in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
+            alert.addAction(defaultAction)
+            presentViewController(alert, animated: true, completion: nil)
         } else {
             let ac = UIAlertController(title: "エラー", message: "コメントが書かれていません", preferredStyle: .Alert)
             let okAction = UIAlertAction(title: "OK", style: .Default) { _ in}
@@ -36,10 +48,13 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITextFiel
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         self.question = appDelegate.question
-        for (_, value) in question!.comment {
-            self.names.append(value.first!.0)
-            self.comments.append(value.first!.1)
+        if let comment = question!.comment {
+            for (_, value) in comment {
+                self.names.append(value.first!.0)
+                self.comments.append(value.first!.1)
+            }
         }
+        
         table.dataSource = self
         table.registerClass(CustomCell.self, forCellReuseIdentifier: "CustomCell")
         table.registerClass(CommentCell.self, forCellReuseIdentifier: "CommentCell")
@@ -51,9 +66,9 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITextFiel
     }
     
     override func viewWillAppear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UserViewController.keyboardWillBeShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentViewController.keyboardWillBeShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UserViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func keyboardWillBeShown(notification: NSNotification) {
@@ -103,6 +118,7 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITextFiel
             cell.subjectLabel.text = question!.subject
             cell.titleLabel.text = question!.unit
             cell.textbodyLabel.text = question!.content
+            cell.nameLabel.text = question!.name
             
             return cell
         } else {
@@ -117,5 +133,20 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITextFiel
     
     @IBAction func back() {
         self.dismissViewControllerAnimated(true, completion: nil)
+        
+//        question.removeAll()
+//        let firebaseRef = FIRDatabase.database().reference()
+//        firebaseRef.queryLimitedToLast(25).observeEventType(.ChildAdded, withBlock: { snapshot in
+//            if let subject = snapshot.value!.objectForKey("subject") as? String,
+//                unit = snapshot.value!.objectForKey("unit") as? String,
+//                content = snapshot.value!.objectForKey("content") as? String,
+//                comment = snapshot.value!.objectForKey("comment") as? [String: [String: String]] {
+//                
+//                let q = Question(id: snapshot.key, subject: subject, unit: unit, content: content, name: "Shiho", comment: comment)
+//                self.question.insert(q, atIndex: 0)
+//            }
+//            self.table.reloadData()
+//            self.refreshControl.endRefreshing()
+//        })
     }
 }

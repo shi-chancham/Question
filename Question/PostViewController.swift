@@ -23,7 +23,7 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet var unitTextField: UITextField!
     @IBOutlet var mainTextView: UITextView!
     
-    var subjectArray: NSArray = ["英語","国語","数学","社会","理科"]
+    var subjectArray = ["英語","国語","数学","社会","理科"]
     
     let saveData: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
@@ -36,6 +36,7 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         subjectPickerview.dataSource = self
         unitTextField.delegate = self
         
+        subject = subjectArray.first!
         self.setNeedsStatusBarAppearanceUpdate();
     }
     
@@ -65,10 +66,12 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             self.presentViewController(alert, animated: true, completion: nil)
             
         } else {
-            self.dismissViewControllerAnimated(true, completion: nil)
-            let messageData = ["name": "shiho", "subject": subject, "unit": unitTextField.text!, "content": mainTextView.text!, "comment": ["first": ["aura": "こめんと"]]]
+            
+            let name = saveData.objectForKey("name") as! String
+            let messageData = ["name": name, "subject": subject, "unit": unitTextField.text!, "content": mainTextView.text!]
             //saveData.objectForKey("name") as! String!
             firebaseRef.childByAutoId().setValue(messageData)
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
@@ -89,12 +92,12 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     //表示内容
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return subjectArray[row] as? String
+        return subjectArray[row]
     }
     
     //選択時
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        subject = subjectArray[row] as! String
+        subject = subjectArray[row]
     }
     
     //MARK: textField

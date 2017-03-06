@@ -26,7 +26,7 @@ class UserViewController: UIViewController, UITextFieldDelegate {
         mailTextField.delegate = self
         
     }
-    
+    /*
     override func viewWillAppear(animated: Bool) {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UserViewController.keyboardWillBeShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
@@ -49,7 +49,7 @@ class UserViewController: UIViewController, UITextFieldDelegate {
         UIView.animateWithDuration(duration, animations:{
             self.view.transform = CGAffineTransformIdentity
             },completion:nil)
-    }
+    }*/
     
     func textFieldShouldReturn(textField: UITextField) -> Bool{
         
@@ -58,6 +58,11 @@ class UserViewController: UIViewController, UITextFieldDelegate {
         mailTextField.resignFirstResponder()
         
         return true
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        // trueの場合はステータスバー非表示
+        return true;
     }
     
     @IBAction func done() {
@@ -71,7 +76,9 @@ class UserViewController: UIViewController, UITextFieldDelegate {
         } else {
             _ = FIRDatabase.database().reference()
             
-            FIRAuth.auth()?.createUserWithEmail(mailTextField.text!, password: passwordTextField.text!, completion: { (user:FIRUser?, error:NSError?) in
+            saveData.setObject(self.usernameTextField.text!, forKey: "name")
+            
+            FIRAuth.auth()?.createUserWithEmail(mailTextField.text!, password: passwordTextField.text!, completion: { (user:FIRUser?, error: NSError?) in
                 if let error = error {
                     
                     let alert = UIAlertController(title: "error!", message: "有効なメールアドレスを入力してください", preferredStyle:  UIAlertControllerStyle.Alert)
@@ -91,7 +98,6 @@ class UserViewController: UIViewController, UITextFieldDelegate {
                 print("ここまでok")
             })
         }
-        
     }
     
 }
