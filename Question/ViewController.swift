@@ -95,6 +95,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     func refresh() {
         question.removeAll()
         let firebaseRef = FIRDatabase.database().reference()
+        firebaseRef.childByAutoId().setValue("report")
         firebaseRef.queryLimitedToLast(25).observeEventType(.ChildAdded, withBlock: { snapshot in
             if let subject = snapshot.value!.objectForKey("subject") as? String,
                 let unit = snapshot.value!.objectForKey("unit") as? String,
