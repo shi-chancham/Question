@@ -66,12 +66,19 @@ class PostViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             self.presentViewController(alert, animated: true, completion: nil)
             
         } else {
-            
-            let name = saveData.objectForKey("name") as! String
-            let messageData = ["name": name, "subject": subject, "unit": unitTextField.text!, "content": mainTextView.text!]
-            //saveData.objectForKey("name") as! String!
-            firebaseRef.childByAutoId().setValue(messageData)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            let alert = UIAlertController(title: "投稿しました！", message: "", preferredStyle:  UIAlertControllerStyle.Alert)
+            let cancelAction = UIAlertAction(title: "閉じる", style: UIAlertActionStyle.Cancel) { _ in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            alert.addAction(cancelAction)
+            presentViewController(alert, animated: true, completion: nil)
+            if let name = saveData.objectForKey("name") as? String {
+                let messageData = ["name": name, "subject": subject, "unit": unitTextField.text!, "content": mainTextView.text!]
+                firebaseRef.childByAutoId().setValue(messageData)
+            } else {
+                let messageData = ["name": "noname", "subject": subject, "unit": unitTextField.text!, "content": mainTextView.text!]
+                firebaseRef.childByAutoId().setValue(messageData)
+            }
         }
     }
     

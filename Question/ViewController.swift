@@ -95,7 +95,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     func refresh() {
         question.removeAll()
         let firebaseRef = FIRDatabase.database().reference()
-        firebaseRef.childByAutoId().setValue("report")
         firebaseRef.queryLimitedToLast(25).observeEventType(.ChildAdded, withBlock: { snapshot in
             if let subject = snapshot.value!.objectForKey("subject") as? String,
                 let unit = snapshot.value!.objectForKey("unit") as? String,
@@ -143,6 +142,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         }
         
         let destructiveAction_1: UIAlertAction = UIAlertAction(title: "報告する", style: UIAlertActionStyle.Destructive) { _ in
+            let firebaseRef = FIRDatabase.database().reference()
+            let data = ["name": "report"]
+            firebaseRef.childByAutoId().setValue(data)
             let okAlert = UIAlertController(title: "投稿を報告しました。", message: "", preferredStyle:  UIAlertControllerStyle.Alert)
             let action = UIAlertAction(title: "閉じる", style: UIAlertActionStyle.Default, handler: nil)
             okAlert.addAction(action)
