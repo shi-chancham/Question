@@ -25,6 +25,7 @@
 		B186346B1DA8D4B000B2179F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B18634691DA8D4B000B2179F /* Main.storyboard */; };
 		B1864F521C9D3002004E8BA5 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1864F511C9D3002004E8BA5 /* CustomCell.swift */; };
 		B1864F541C9D487A004E8BA5 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1864F531C9D487A004E8BA5 /* PostViewController.swift */; };
+		B18B68921F2E1376007556E4 /* question park.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B18B68911F2E1376007556E4 /* question park.jpeg */; };
 		B1EF02C81D0BFF7E00135AAD /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF02C71D0BFF7E00135AAD /* Question.swift */; };
 		B1EF02CC1D0C261D00135AAD /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF02CB1D0C261D00135AAD /* CommentViewController.swift */; };
 		B1F87CB81DCDC28800546179 /* ic_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = B1F87C7C1DCDC28800546179 /* ic_launcher.png */; };
@@ -123,6 +124,7 @@
 		B186346C1DA9021900B2179F /* Question.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Question.entitlements; sourceTree = "<group>"; };
 		B1864F511C9D3002004E8BA5 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		B1864F531C9D487A004E8BA5 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		B18B68911F2E1376007556E4 /* question park.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "question park.jpeg"; path = "question icon/question park.jpeg"; sourceTree = "<group>"; };
 		B1EF02C71D0BFF7E00135AAD /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		B1EF02CB1D0C261D00135AAD /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		B1F87C7C1DCDC28800546179 /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				B16CFBD31E6164B600E9097B /* rule.html */,
 				B1F87C791DCDC28800546179 /* question icon */,
 				B186346C1DA9021900B2179F /* Question.entitlements */,
+				B18B68911F2E1376007556E4 /* question park.jpeg */,
 				B1768F271C8AFB48004DC36B /* AppDelegate.swift */,
 				B1768F291C8AFB48004DC36B /* ViewController.swift */,
 				B142BCF01D55868C009E1E91 /* UserViewController.swift */,
@@ -596,6 +599,7 @@
 				B1F87CC21DCDC28800546179 /* icon-messages-app-iPadAir-67x50@2x.png in Resources */,
 				B16CFBD51E6164B600E9097B /* rule.html in Resources */,
 				B186346B1DA8D4B000B2179F /* Main.storyboard in Resources */,
+				B18B68921F2E1376007556E4 /* question park.jpeg in Resources */,
 				B1F87CBA1DCDC28800546179 /* ic_launcher.png in Resources */,
 				B1F87CE71DCDC28800546179 /* Icon-44@2x.png in Resources */,
 				B16CFBD41E6164B600E9097B /* privacy.html in Resources */,

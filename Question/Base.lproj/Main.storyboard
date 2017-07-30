@@ -449,7 +449,7 @@
                                     <action selector="done" destination="h3z-A9-HSR" eventType="touchUpInside" id="4hs-Nd-CYX"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Sign upをタップすることで 利用規約、プライバシーポリシー に　同意するものとします。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8GU-58-Y2p">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Sign upをタップすることで 利用規約、プライバシーポリシー に同意するものとします。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8GU-58-Y2p">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="1yO-E1-Upe"/>
@@ -650,6 +650,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="XEC-kc-SHH"/>
+        <segue reference="5zm-tj-8Ye"/>
     </inferredMetricsTieBreakers>
 </document>
